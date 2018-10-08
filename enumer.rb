@@ -43,6 +43,23 @@ module Enumerable
         end
         count
     end
+    def my_map procx=nil
+        newarray=[]
+        for i in 0..self.length-1 do
+            if (procx)
+                newarray<<procx.call(self[i])
+            else
+                newarray << yield(self[i])
+            end
+        end
+        newarray
+    end
+    def my_inject(accum=0)
+        for i in 0..self.length-1 do
+            accum=yield(accum,self[i])
+        end
+        accum
+    end
 end
 
 =begin
